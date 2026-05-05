@@ -1,0 +1,40 @@
+<h2>Tech Stack Approaches</h2>
+<p class="subtitle">Pick the foundation for your Nepali Imposter Game</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Vanilla HTML/CSS/JS</h3>
+      <p>No framework, no build step. Pure browser code.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Zero setup</li><li>Works everywhere</li><li>Tiny file size</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Hard to manage multi-screen state</li><li>No component reuse</li><li>GitHub Pages deploy is manual</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B ⭐ Recommended</div>
+    <div class="content">
+      <h3>React + Vite → GitHub Pages</h3>
+      <p>Component-based UI, fast dev server, one-command deploy.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Clean multi-screen state (settings → reveal → result)</li><li>Easy GitHub Pages deploy via <code>gh-pages</code></li><li>Wide ecosystem &amp; documentation</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Slightly heavier bundle</li><li>Requires Node.js locally</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Svelte + Vite → GitHub Pages</h3>
+      <p>Compile-time framework — smaller output, very clean syntax.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Smallest bundle size</li><li>Simpler code than React</li><li>Great for small apps like games</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Smaller community</li><li>Less familiar to most devs</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

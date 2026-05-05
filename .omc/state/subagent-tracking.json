@@ -1,0 +1,26 @@
+{
+  "agents": [
+    {
+      "agent_id": "a36cea17901163c5b",
+      "agent_type": "general-purpose",
+      "started_at": "2026-05-05T17:29:45.785Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-05T17:30:09.568Z",
+      "duration_ms": 23783
+    },
+    {
+      "agent_id": "a2507996699ac909d",
+      "agent_type": "superpowers:code-reviewer",
+      "started_at": "2026-05-05T17:31:22.977Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-05-05T17:32:33.184Z",
+      "duration_ms": 70207
+    }
+  ],
+  "total_spawned": 2,
+  "total_completed": 2,
+  "total_failed": 0,
+  "last_updated": "2026-05-05T17:32:33.286Z"
+}

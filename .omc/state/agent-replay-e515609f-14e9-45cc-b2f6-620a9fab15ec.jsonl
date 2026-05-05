@@ -1,0 +1,4 @@
+{"t":0,"agent":"a36cea1","agent_type":"general-purpose","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a36cea1","agent_type":"general-purpose","event":"agent_stop","success":true,"duration_ms":23783}
+{"t":0,"agent":"a250799","agent_type":"superpowers:code-reviewer","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a250799","agent_type":"superpowers:code-reviewer","event":"agent_stop","success":true,"duration_ms":70207}
