@@ -23,9 +23,9 @@ function renderSettings(
   overrideState: Partial<AppState> = {},
   mockFns: Record<string, ReturnType<typeof vi.fn>> = {}
 ) {
-  const goTo = mockFns.goTo ?? vi.fn()
-  const updateSettings = mockFns.updateSettings ?? vi.fn()
-  const startRound = mockFns.startRound ?? vi.fn()
+  const goTo = (mockFns.goTo ?? vi.fn()) as unknown as (screen: import('../../types').Screen) => void
+  const updateSettings = (mockFns.updateSettings ?? vi.fn()) as unknown as (settings: Partial<GameSettings>) => void
+  const startRound = (mockFns.startRound ?? vi.fn()) as unknown as () => void
 
   return render(
     <LanguageContext.Provider
@@ -41,7 +41,7 @@ function renderSettings(
           goTo,
           updateSettings,
           startRound,
-          markPlayerRevealed: vi.fn(),
+          markPlayerRevealed: vi.fn() as unknown as (playerIndex: number) => void,
         }}
       >
         <SettingsScreen />
