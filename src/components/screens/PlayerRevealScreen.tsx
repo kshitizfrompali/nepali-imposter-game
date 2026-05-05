@@ -57,14 +57,16 @@ export default function PlayerRevealScreen() {
                 key={idx}
                 onClick={() => handlePlayerTap(idx)}
                 disabled={seen}
-                className={`flex flex-col items-center justify-center gap-2 rounded-2xl min-h-[96px] p-3 font-bold text-sm transition-all active:scale-95 ${
+                className={`flex flex-col items-center justify-center gap-1.5 rounded-2xl min-h-[96px] p-4 transition-all active:scale-95 ${
                   seen
-                    ? 'bg-white/5 text-white/25 border border-white/5'
+                    ? 'bg-white/5 border border-white/5'
                     : 'bg-gradient-to-br from-violet-600/70 to-indigo-600/70 text-white border border-violet-500/40 shadow-lg shadow-violet-900/40'
                 }`}
               >
-                <span className="text-2xl">{seen ? '✓' : '👤'}</span>
-                <span className={seen ? 'line-through' : ''}>{player}</span>
+                {seen && <span className="text-xl text-white/30">✓</span>}
+                <span className={`text-base font-black leading-tight text-center break-all ${seen ? 'text-white/25 line-through' : 'text-white'}`}>
+                  {player}
+                </span>
               </button>
             )
           })}
