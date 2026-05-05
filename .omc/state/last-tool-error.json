@@ -1,7 +1,0 @@
-{
-  "tool_name": "Read",
-  "tool_input_preview": "{\"file_path\":\"/home/kshitiz/research/nepali-imposter-game/docs/superpowers/plans/2026-05-05-nepali-imposter-game.md\"}",
-  "error": "File does not exist. Note: your current working directory is /home/kshitiz/research/nepali-imposter-game.",
-  "timestamp": "2026-05-05T17:31:36.012Z",
-  "retry_count": 1
-}
