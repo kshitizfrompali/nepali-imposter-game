@@ -35,140 +35,152 @@ export default function SettingsScreen() {
   const canStart = settings.players.length >= 2
 
   return (
-    <div className="flex flex-col gap-6 p-4 max-w-md mx-auto w-full">
-      <h2 className="text-2xl font-bold text-white">{t.settings}</h2>
-
-      <section>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
-          {t.addPlayers}
-        </label>
-        <div className="flex gap-2">
-          <input
-            className="flex-1 px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-indigo-500"
-            placeholder={t.playerNamePlaceholder}
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            maxLength={20}
-          />
-          <button
-            onClick={addPlayer}
-            disabled={!nameInput.trim()}
-            className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-medium transition-colors"
-          >
-            {t.addPlayer}
-          </button>
-        </div>
-        {settings.players.length > 0 && (
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {settings.players.map((player, idx) => (
-              <li
-                key={idx}
-                className="flex items-center gap-1 px-3 py-1 bg-gray-700 rounded-full text-sm text-white"
-              >
-                {player}
-                <button
-                  onClick={() => removePlayer(idx)}
-                  className="ml-1 text-gray-400 hover:text-red-400 transition-colors"
-                  aria-label={t.removePlayer}
-                >
-                  ×
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-
-      <section>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
-          {t.imposterCount}
-        </label>
+    <div className="flex flex-col flex-1 min-h-0">
+      <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4 space-y-4">
         <div className="flex items-center gap-3">
           <button
-            onClick={() =>
-              updateSettings({ imposterCount: Math.max(1, settings.imposterCount - 1) })
-            }
-            className="w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-bold transition-colors"
+            onClick={() => goTo('home')}
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all active:scale-95 flex-shrink-0 text-lg"
           >
-            −
+            ←
           </button>
-          <span className="text-2xl font-bold text-white w-8 text-center">
-            {settings.imposterCount}
-          </span>
-          <button
-            onClick={() =>
-              updateSettings({
-                imposterCount: Math.min(
-                  Math.max(1, settings.players.length - 1),
-                  settings.imposterCount + 1
-                ),
-              })
-            }
-            className="w-8 h-8 rounded-full bg-gray-700 hover:bg-gray-600 text-white font-bold transition-colors"
-          >
-            +
-          </button>
-        </div>
-      </section>
-
-      <section>
-        <label className="block text-sm font-medium text-gray-300 mb-2">
-          {t.wordMode}
-        </label>
-        <div className="flex flex-col gap-2">
-          {(['random', 'pick-category'] as WordMode[]).map((mode) => (
-            <label key={mode} className="flex items-center gap-3 cursor-pointer">
-              <input
-                type="radio"
-                name="wordMode"
-                value={mode}
-                checked={settings.wordMode === mode}
-                onChange={() => updateSettings({ wordMode: mode })}
-                className="accent-indigo-500"
-              />
-              <span className="text-white text-sm">
-                {mode === 'random' ? t.randomCategory : t.pickCategory}
-              </span>
-            </label>
-          ))}
+          <h2 className="text-2xl font-black text-white">{t.settings}</h2>
         </div>
 
-        {settings.wordMode === 'pick-category' && (
-          <select
-            className="mt-3 w-full px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-indigo-500"
-            value={settings.selectedCategoryId ?? ''}
-            onChange={(e) => updateSettings({ selectedCategoryId: e.target.value })}
-          >
-            <option value="" disabled>
-              {t.selectCategory}
-            </option>
-            {wordBank.categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.label.en} / {cat.label.np}
+        {/* Players */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-3">
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+            {t.addPlayers}
+          </p>
+          <div className="flex gap-2">
+            <input
+              className="flex-1 px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/30 border border-white/10 focus:outline-none focus:border-violet-500 text-sm"
+              placeholder={t.playerNamePlaceholder}
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              maxLength={20}
+            />
+            <button
+              onClick={addPlayer}
+              disabled={!nameInput.trim()}
+              className="px-5 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 disabled:opacity-30 text-white font-bold text-sm active:scale-95 transition-all"
+            >
+              {t.addPlayer}
+            </button>
+          </div>
+          {settings.players.length > 0 && (
+            <div className="flex flex-wrap gap-2 pt-1">
+              {settings.players.map((player, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-violet-600/20 rounded-full border border-violet-500/30"
+                >
+                  <span className="text-sm text-white font-medium">{player}</span>
+                  <button
+                    onClick={() => removePlayer(idx)}
+                    className="text-white/40 hover:text-red-400 transition-colors text-lg leading-none"
+                    aria-label={t.removePlayer}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Imposter count */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
+            {t.imposterCount}
+          </p>
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() =>
+                updateSettings({ imposterCount: Math.max(1, settings.imposterCount - 1) })
+              }
+              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+            >
+              −
+            </button>
+            <span className="text-4xl font-black text-white tabular-nums">
+              {settings.imposterCount}
+            </span>
+            <button
+              onClick={() =>
+                updateSettings({
+                  imposterCount: Math.min(
+                    Math.max(1, settings.players.length - 1),
+                    settings.imposterCount + 1
+                  ),
+                })
+              }
+              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        {/* Word mode */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-3">
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+            {t.wordMode}
+          </p>
+          <div className="flex flex-col gap-2">
+            {(['random', 'pick-category'] as WordMode[]).map((mode) => {
+              const active = settings.wordMode === mode
+              return (
+                <button
+                  key={mode}
+                  onClick={() => updateSettings({ wordMode: mode })}
+                  className={`w-full py-3 px-4 rounded-xl text-sm font-semibold text-left transition-all active:scale-95 ${
+                    active
+                      ? 'bg-gradient-to-r from-violet-600/40 to-indigo-600/40 border border-violet-500/50 text-white'
+                      : 'bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {mode === 'random' ? t.randomCategory : t.pickCategory}
+                </button>
+              )
+            })}
+          </div>
+
+          {settings.wordMode === 'pick-category' && (
+            <select
+              className="w-full px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:outline-none focus:border-violet-500 text-sm"
+              value={settings.selectedCategoryId ?? ''}
+              onChange={(e) => updateSettings({ selectedCategoryId: e.target.value })}
+            >
+              <option value="" disabled className="bg-gray-900">
+                {t.selectCategory}
               </option>
-            ))}
-          </select>
+              {wordBank.categories.map((cat) => (
+                <option key={cat.id} value={cat.id} className="bg-gray-900">
+                  {cat.label.en} / {cat.label.np}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+      </div>
+
+      {/* Sticky bottom CTA */}
+      <div className="px-4 pb-6 pt-3 flex-shrink-0 border-t border-white/5">
+        {!canStart && (
+          <p className="text-amber-400 text-xs font-semibold mb-3 text-center">
+            {t.minPlayersError}
+          </p>
         )}
-      </section>
-
-      {!canStart && (
-        <p className="text-yellow-400 text-sm">{t.minPlayersError}</p>
-      )}
-      <button
-        onClick={startRound}
-        disabled={!canStart}
-        className="w-full py-4 text-lg font-bold rounded-2xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white transition-colors"
-      >
-        {t.startGameButton}
-      </button>
-
-      <button
-        onClick={() => goTo('home')}
-        className="text-sm text-gray-500 hover:text-gray-300 transition-colors text-center"
-      >
-        ← Back
-      </button>
+        <button
+          onClick={startRound}
+          disabled={!canStart}
+          className="w-full py-5 text-xl font-black rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 disabled:opacity-30 text-white shadow-2xl shadow-violet-900/50 active:scale-95 transition-all"
+        >
+          {t.startGameButton}
+        </button>
+      </div>
     </div>
   )
 }

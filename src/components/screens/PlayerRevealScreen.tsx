@@ -18,6 +18,7 @@ export default function PlayerRevealScreen() {
   const seenCount = round.revealedPlayers.filter(Boolean).length
   const allSeen = seenCount === settings.players.length
   const isImposter = activePlayer !== null && round.imposterIndices.includes(activePlayer)
+  const progressPct = (seenCount / settings.players.length) * 100
 
   function handlePlayerTap(idx: number) {
     if (round!.revealedPlayers[idx]) return
@@ -31,67 +32,96 @@ export default function PlayerRevealScreen() {
   }
 
   return (
-    <div className="flex flex-col gap-6 p-4 max-w-md mx-auto w-full">
-      <h2 className="text-xl font-bold text-white">{t.tapToReveal}</h2>
+    <div className="flex flex-col flex-1 min-h-0">
+      <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4 flex flex-col gap-5">
+        {/* Header + progress */}
+        <div>
+          <h2 className="text-xl font-black text-white mb-3">{t.tapToReveal}</h2>
+          <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full transition-all duration-500"
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+          <p className="text-xs text-white/40 mt-1.5 font-medium">
+            {t.progressLabel(seenCount, settings.players.length)}
+          </p>
+        </div>
 
-      <p className="text-sm text-gray-400">
-        {t.progressLabel(seenCount, settings.players.length)}
-      </p>
+        {/* Player grid */}
+        <div className="grid grid-cols-2 gap-3">
+          {settings.players.map((player, idx) => {
+            const seen = round.revealedPlayers[idx]
+            return (
+              <button
+                key={idx}
+                onClick={() => handlePlayerTap(idx)}
+                disabled={seen}
+                className={`flex flex-col items-center justify-center gap-2 rounded-2xl min-h-[96px] p-3 font-bold text-sm transition-all active:scale-95 ${
+                  seen
+                    ? 'bg-white/5 text-white/25 border border-white/5'
+                    : 'bg-gradient-to-br from-violet-600/70 to-indigo-600/70 text-white border border-violet-500/40 shadow-lg shadow-violet-900/40'
+                }`}
+              >
+                <span className="text-2xl">{seen ? '✓' : '👤'}</span>
+                <span className={seen ? 'line-through' : ''}>{player}</span>
+              </button>
+            )
+          })}
+        </div>
 
-      <div className="flex flex-wrap gap-3">
-        {settings.players.map((player, idx) => {
-          const seen = round.revealedPlayers[idx]
-          return (
-            <button
-              key={idx}
-              onClick={() => handlePlayerTap(idx)}
-              disabled={seen}
-              className={`px-5 py-3 rounded-xl font-medium text-base transition-all ${
-                seen
-                  ? 'bg-gray-700 text-gray-500 cursor-not-allowed line-through'
-                  : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-md'
-              }`}
-            >
-              {player} {seen ? '✓' : ''}
-            </button>
-          )
-        })}
+        {allSeen && (
+          <button
+            onClick={() => goTo('discussion')}
+            className="w-full py-5 text-xl font-black rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl shadow-emerald-900/50 active:scale-95 transition-all"
+          >
+            {t.startDiscussion}
+          </button>
+        )}
       </div>
 
-      {allSeen && (
-        <button
-          onClick={() => goTo('discussion')}
-          className="w-full py-4 text-lg font-bold rounded-2xl bg-green-600 hover:bg-green-500 text-white transition-colors mt-4"
-        >
-          {t.startDiscussion}
-        </button>
-      )}
-
+      {/* Full-screen role overlay */}
       {activePlayer !== null && (
-        <div className="fixed inset-0 z-50 bg-gray-950 flex flex-col items-center justify-center gap-6 px-6">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 px-8 bg-gradient-to-br from-[#0a0008] to-[#08080f]">
           {isImposter ? (
             <>
-              <div className="text-6xl">🕵️</div>
-              <p className="text-4xl font-black text-red-500">{t.youAreImposter}</p>
-              <p className="text-gray-400 text-center text-sm">
-                {settings.players[activePlayer]}, you do not know the word. Blend in!
+              <div className="w-32 h-32 rounded-3xl bg-red-900/30 border border-red-700/30 flex items-center justify-center shadow-2xl shadow-red-900/50">
+                <span className="text-7xl">🕵️</span>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3">
+                  {settings.players[activePlayer]}
+                </p>
+                <p className="text-5xl font-black text-red-500 tracking-wider leading-none">
+                  {t.youAreImposter}
+                </p>
+              </div>
+              <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
+                You do not know the word. Blend in and deceive!
               </p>
             </>
           ) : (
             <>
-              <div className="text-6xl">👁️</div>
-              <p className="text-sm font-medium text-gray-400 uppercase tracking-widest">
-                {t.category}: {category?.label.en} / {category?.label.np}
-              </p>
-              <p className="text-5xl font-black text-white">{round.word}</p>
-              <p className="text-gray-400 text-center text-sm">
-                {settings.players[activePlayer]}, remember the word!
+              <div className="w-32 h-32 rounded-3xl bg-violet-900/30 border border-violet-500/30 flex items-center justify-center shadow-2xl shadow-violet-900/50">
+                <span className="text-7xl">🔑</span>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-2">
+                  {settings.players[activePlayer]}
+                </p>
+                <p className="text-xs text-white/40 uppercase tracking-widest mb-3">
+                  {t.category}: {category?.label.en} / {category?.label.np}
+                </p>
+                <p className="text-5xl font-black text-white leading-tight">{round.word}</p>
+              </div>
+              <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
+                Remember the word. Find the imposter!
               </p>
             </>
           )}
           <button
             onClick={handleDone}
-            className="mt-6 px-10 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xl font-bold transition-colors"
+            className="mt-2 px-12 py-5 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xl font-black active:scale-95 transition-all shadow-2xl shadow-violet-900/60"
           >
             {t.done}
           </button>

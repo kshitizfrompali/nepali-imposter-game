@@ -1,16 +1,15 @@
 import { useLanguage } from '../context/LanguageContext'
 
 export default function Header() {
-  const { language, toggleLanguage, t } = useLanguage()
+  const { language, toggleLanguage } = useLanguage()
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
-      <h1 className="text-lg font-bold text-white">{t.appTitle}</h1>
+    <header className="flex justify-end px-4 pt-4 pb-1 flex-shrink-0">
       <button
         onClick={toggleLanguage}
-        className="px-3 py-1 text-sm font-medium rounded-full bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
+        className="px-3 py-1.5 text-xs font-semibold rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all border border-white/10 active:scale-95"
       >
-        {language === 'en' ? 'नेपाली' : 'English'}
+        {language === 'en' ? 'नेपाली' : 'EN'}
       </button>
     </header>
   )

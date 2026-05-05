@@ -22,9 +22,9 @@ export default function App() {
   return (
     <LanguageProvider>
       <AppProvider>
-        <div className="min-h-screen bg-gray-900 flex flex-col">
+        <div className="h-full flex flex-col bg-gradient-to-br from-[#0d0d1a] to-[#080810] overflow-hidden">
           <Header />
-          <main className="flex flex-col flex-1">
+          <main className="flex flex-col flex-1 min-h-0">
             <ScreenRouter />
           </main>
         </div>
