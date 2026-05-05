@@ -2,11 +2,20 @@ import { AppProvider, useApp } from './context/AppContext'
 import { LanguageProvider } from './context/LanguageContext'
 import Header from './components/Header'
 import HomeScreen from './components/screens/HomeScreen'
+import SettingsScreen from './components/screens/SettingsScreen'
+import PlayerRevealScreen from './components/screens/PlayerRevealScreen'
+import DiscussionScreen from './components/screens/DiscussionScreen'
+import ResultScreen from './components/screens/ResultScreen'
 
 function ScreenRouter() {
   const { state } = useApp()
-  if (state.screen === 'settings') return <div className="p-4 text-white">Settings coming soon...</div>
-  return <HomeScreen />
+  switch (state.screen) {
+    case 'home': return <HomeScreen />
+    case 'settings': return <SettingsScreen />
+    case 'reveal': return <PlayerRevealScreen />
+    case 'discussion': return <DiscussionScreen />
+    case 'result': return <ResultScreen />
+  }
 }
 
 export default function App() {
