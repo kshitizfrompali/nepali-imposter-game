@@ -5,7 +5,7 @@ import type { Language } from '../types'
 interface LanguageContextValue {
   language: Language
   toggleLanguage: () => void
-  t: typeof translations.en
+  t: typeof translations[Language]
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
