@@ -19,6 +19,7 @@ export interface GameSettings {
   imposterCount: number
   wordMode: WordMode
   selectedCategoryId?: string
+  showCategoryToImposter: boolean
 }
 
 export interface GameRound {

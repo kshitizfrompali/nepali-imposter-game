@@ -97,6 +97,11 @@ export default function PlayerRevealScreen() {
                 <p className="text-5xl font-black text-red-500 tracking-wider leading-none">
                   {t.youAreImposter}
                 </p>
+                {settings.showCategoryToImposter && category && (
+                  <p className="text-sm text-white/40 mt-4 uppercase tracking-widest">
+                    {t.category}: {category.label.en} / {category.label.np}
+                  </p>
+                )}
               </div>
               <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
                 You do not know the word. Blend in and deceive!

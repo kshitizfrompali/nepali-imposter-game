@@ -164,6 +164,26 @@ export default function SettingsScreen() {
             </select>
           )}
         </div>
+        {/* Show category to imposter */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest leading-snug">
+              {t.showCategoryToImposter}
+            </p>
+            <button
+              onClick={() => updateSettings({ showCategoryToImposter: !settings.showCategoryToImposter })}
+              className={`relative w-12 h-6 rounded-full transition-all flex-shrink-0 ${
+                settings.showCategoryToImposter ? 'bg-violet-600' : 'bg-white/15'
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${
+                  settings.showCategoryToImposter ? 'left-6' : 'left-0.5'
+                }`}
+              />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Sticky bottom CTA */}
