@@ -18,10 +18,18 @@ const defaultSettings: GameSettings = {
   wordMode: 'random',
 }
 
+function loadSettings(): GameSettings {
+  try {
+    const raw = localStorage.getItem('nig_settings')
+    if (raw) return { ...defaultSettings, ...JSON.parse(raw) }
+  } catch {}
+  return defaultSettings
+}
+
 const initialState: AppState = {
   screen: 'home',
   language: 'en',
-  settings: defaultSettings,
+  settings: loadSettings(),
   round: null,
 }
 
@@ -45,10 +53,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const updateSettings = useCallback((patch: Partial<GameSettings>) => {
-    setState((prev) => ({
-      ...prev,
-      settings: { ...prev.settings, ...patch },
-    }))
+    setState((prev) => {
+      const settings = { ...prev.settings, ...patch }
+      localStorage.setItem('nig_settings', JSON.stringify(settings))
+      return { ...prev, settings }
+    })
   }, [])
 
   const startRound = useCallback(() => {
