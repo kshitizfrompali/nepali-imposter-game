@@ -2,7 +2,7 @@ export type WordMode = 'pick-category' | 'random'
 
 export type Language = 'en' | 'np'
 
-export type Screen = 'home' | 'settings' | 'reveal' | 'discussion' | 'result'
+export type Screen = 'home' | 'settings' | 'reveal' | 'starter' | 'discussion' | 'result'
 
 export interface Category {
   id: string

@@ -27,6 +27,10 @@ export const translations = {
     theWordWas: 'The word was',
     playAgain: 'Play Again',
     language: 'Language',
+    whoStarts: 'Who starts?',
+    spin: '🎲 Spin',
+    reSpin: '↺ Re-spin',
+    startDiscussionNow: 'Start Discussion →',
   },
   np: {
     appTitle: 'नेपाली इम्पोस्टर गेम',
@@ -56,6 +60,10 @@ export const translations = {
     theWordWas: 'शब्द थियो',
     playAgain: 'फेरि खेल्नुहोस्',
     language: 'भाषा',
+    whoStarts: 'को सुरु गर्छ?',
+    spin: '🎲 स्पिन गर्नुहोस्',
+    reSpin: '↺ फेरि स्पिन',
+    startDiscussionNow: 'छलफल सुरु गर्नुहोस् →',
   },
 } as const
 

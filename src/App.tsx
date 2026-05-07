@@ -6,6 +6,7 @@ import SettingsScreen from './components/screens/SettingsScreen'
 import PlayerRevealScreen from './components/screens/PlayerRevealScreen'
 import DiscussionScreen from './components/screens/DiscussionScreen'
 import ResultScreen from './components/screens/ResultScreen'
+import StarterScreen from './components/screens/StarterScreen'
 
 function ScreenRouter() {
   const { state } = useApp()
@@ -13,6 +14,7 @@ function ScreenRouter() {
     case 'home': return <HomeScreen />
     case 'settings': return <SettingsScreen />
     case 'reveal': return <PlayerRevealScreen />
+    case 'starter': return <StarterScreen />
     case 'discussion': return <DiscussionScreen />
     case 'result': return <ResultScreen />
   }

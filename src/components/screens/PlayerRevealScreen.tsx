@@ -74,7 +74,7 @@ export default function PlayerRevealScreen() {
 
         {allSeen && (
           <button
-            onClick={() => goTo('discussion')}
+            onClick={() => goTo('starter')}
             className="w-full py-5 text-xl font-black rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl shadow-emerald-900/50 active:scale-95 transition-all"
           >
             {t.startDiscussion}
