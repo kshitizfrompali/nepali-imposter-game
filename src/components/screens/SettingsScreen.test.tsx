@@ -10,6 +10,7 @@ const defaultSettings: GameSettings = {
   players: [],
   imposterCount: 1,
   wordMode: 'random',
+  showCategoryToImposter: false,
 }
 
 const defaultState: AppState = {

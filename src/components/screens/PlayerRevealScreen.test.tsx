@@ -13,6 +13,7 @@ const baseState: AppState = {
     players: ['Alice', 'Bob', 'Charlie'],
     imposterCount: 1,
     wordMode: 'random',
+    showCategoryToImposter: false,
   },
   round: {
     word: 'मोमो',

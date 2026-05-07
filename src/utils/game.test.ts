@@ -73,6 +73,7 @@ describe('pickWord', () => {
       imposterCount: 1,
       wordMode: 'pick-category',
       selectedCategoryId: 'food',
+      showCategoryToImposter: false,
     }
     const result = pickWord(settings, mockWordBank)
     expect(mockWordBank.categories[0].words).toContain(result.word)
@@ -84,6 +85,7 @@ describe('pickWord', () => {
       players: ['a', 'b'],
       imposterCount: 1,
       wordMode: 'random',
+      showCategoryToImposter: false,
     }
     const result = pickWord(settings, mockWordBank)
     const allWords = mockWordBank.categories.flatMap((c) => c.words)
@@ -96,6 +98,7 @@ describe('pickWord', () => {
       players: ['a', 'b'],
       imposterCount: 1,
       wordMode: 'pick-category',
+      showCategoryToImposter: false,
     }
     expect(() => pickWord(settings, mockWordBank)).toThrow()
   })
@@ -106,6 +109,7 @@ describe('pickWord', () => {
       imposterCount: 1,
       wordMode: 'pick-category',
       selectedCategoryId: 'nonexistent',
+      showCategoryToImposter: false,
     }
     expect(() => pickWord(settings, mockWordBank)).toThrow()
   })
