@@ -43,7 +43,7 @@ export default function PlayerRevealScreen() {
               style={{ width: `${progressPct}%` }}
             />
           </div>
-          <p className="text-xs text-white/40 mt-1.5 font-medium">
+          <p className="text-xs text-white/60 mt-1.5 font-medium" aria-live="polite">
             {t.progressLabel(seenCount, settings.players.length)}
           </p>
         </div>
@@ -91,14 +91,14 @@ export default function PlayerRevealScreen() {
                 <span className="text-7xl">🕵️</span>
               </div>
               <div className="text-center">
-                <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-3">
                   {settings.players[activePlayer]}
                 </p>
                 <p className="text-5xl font-black text-red-500 tracking-wider leading-none">
                   {t.youAreImposter}
                 </p>
                 {settings.showCategoryToImposter && category && (
-                  <p className="text-sm text-white/40 mt-4 uppercase tracking-widest">
+                  <p className="text-sm text-white/60 mt-4 uppercase tracking-widest">
                     {t.category}: {category.label.en} / {category.label.np}
                   </p>
                 )}
@@ -111,7 +111,7 @@ export default function PlayerRevealScreen() {
                   </div>
                 )}
               </div>
-              <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
+              <p className="text-white/60 text-center text-sm max-w-[260px] leading-relaxed">
                 You do not know the word. Blend in and deceive!
               </p>
             </>
@@ -121,15 +121,15 @@ export default function PlayerRevealScreen() {
                 <span className="text-7xl">🔑</span>
               </div>
               <div className="text-center">
-                <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-2">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
                   {settings.players[activePlayer]}
                 </p>
-                <p className="text-xs text-white/40 uppercase tracking-widest mb-3">
+                <p className="text-xs text-white/60 uppercase tracking-widest mb-3">
                   {t.category}: {category?.label.en} / {category?.label.np}
                 </p>
                 <p className="text-5xl font-black text-white leading-tight">{round.word}</p>
               </div>
-              <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
+              <p className="text-white/60 text-center text-sm max-w-[260px] leading-relaxed">
                 Remember the word. Find the imposter!
               </p>
             </>

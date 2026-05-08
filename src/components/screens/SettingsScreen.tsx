@@ -40,7 +40,8 @@ export default function SettingsScreen() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => goTo('home')}
-            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all active:scale-95 flex-shrink-0 text-lg"
+            aria-label="Back to home"
+            className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all active:scale-95 flex-shrink-0 text-lg"
           >
             ←
           </button>
@@ -54,7 +55,8 @@ export default function SettingsScreen() {
           </p>
           <div className="flex gap-2">
             <input
-              className="flex-1 px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/30 border border-white/10 focus:outline-none focus:border-violet-500 text-sm"
+              aria-label={t.playerNamePlaceholder}
+              className="flex-1 min-h-[44px] px-4 py-3 rounded-xl bg-white/10 text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-violet-500 text-sm"
               placeholder={t.playerNamePlaceholder}
               value={nameInput}
               onChange={(e) => setNameInput(e.target.value)}
@@ -79,8 +81,8 @@ export default function SettingsScreen() {
                   <span className="text-sm text-white font-medium">{player}</span>
                   <button
                     onClick={() => removePlayer(idx)}
-                    className="text-white/40 hover:text-red-400 transition-colors text-lg leading-none"
-                    aria-label={t.removePlayer}
+                    className="relative w-6 h-6 -my-1 -mr-1 flex items-center justify-center text-white/50 hover:text-red-400 transition-colors text-lg leading-none rounded-full before:content-[''] before:absolute before:-inset-3"
+                    aria-label={`${t.removePlayer} ${player}`}
                   >
                     ×
                   </button>
@@ -95,16 +97,18 @@ export default function SettingsScreen() {
           <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
             {t.imposterCount}
           </p>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between" role="group" aria-label={t.imposterCount}>
             <button
               onClick={() =>
                 updateSettings({ imposterCount: Math.max(1, settings.imposterCount - 1) })
               }
-              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+              aria-label="Decrease imposter count"
+              disabled={settings.imposterCount <= 1}
+              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
             >
               −
             </button>
-            <span className="text-4xl font-black text-white tabular-nums">
+            <span className="text-4xl font-black text-white tabular-nums" aria-live="polite">
               {settings.imposterCount}
             </span>
             <button
@@ -116,7 +120,9 @@ export default function SettingsScreen() {
                   ),
                 })
               }
-              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+              aria-label="Increase imposter count"
+              disabled={settings.imposterCount >= Math.max(1, settings.players.length - 1)}
+              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
             >
               +
             </button>
@@ -165,41 +171,53 @@ export default function SettingsScreen() {
           )}
         </div>
         {/* Imposter hint toggles */}
-        <div className="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-4">
-          <div className="flex items-center justify-between gap-4">
-            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest leading-snug">
+        <div className="bg-white/5 rounded-2xl px-4 py-2 border border-white/10 divide-y divide-white/5">
+          <button
+            type="button"
+            role="switch"
+            aria-checked={settings.showCategoryToImposter}
+            aria-label={t.showCategoryToImposter}
+            onClick={() => updateSettings({ showCategoryToImposter: !settings.showCategoryToImposter })}
+            className="w-full min-h-[52px] flex items-center justify-between gap-4 py-3 active:scale-[0.99] transition-transform text-left"
+          >
+            <span className="text-xs font-semibold text-white/60 uppercase tracking-widest leading-snug">
               {t.showCategoryToImposter}
-            </p>
-            <button
-              onClick={() => updateSettings({ showCategoryToImposter: !settings.showCategoryToImposter })}
-              className={`relative w-12 h-6 rounded-full transition-all flex-shrink-0 ${
+            </span>
+            <span
+              className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
                 settings.showCategoryToImposter ? 'bg-violet-600' : 'bg-white/15'
               }`}
             >
               <span
-                className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${
-                  settings.showCategoryToImposter ? 'left-6' : 'left-0.5'
+                className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
+                  settings.showCategoryToImposter ? 'left-6' : 'left-1'
                 }`}
               />
-            </button>
-          </div>
-          <div className="flex items-center justify-between gap-4">
-            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest leading-snug">
+            </span>
+          </button>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={settings.showSimilarWordToImposter}
+            aria-label={t.showSimilarWordToImposter}
+            onClick={() => updateSettings({ showSimilarWordToImposter: !settings.showSimilarWordToImposter })}
+            className="w-full min-h-[52px] flex items-center justify-between gap-4 py-3 active:scale-[0.99] transition-transform text-left"
+          >
+            <span className="text-xs font-semibold text-white/60 uppercase tracking-widest leading-snug">
               {t.showSimilarWordToImposter}
-            </p>
-            <button
-              onClick={() => updateSettings({ showSimilarWordToImposter: !settings.showSimilarWordToImposter })}
-              className={`relative w-12 h-6 rounded-full transition-all flex-shrink-0 ${
+            </span>
+            <span
+              className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
                 settings.showSimilarWordToImposter ? 'bg-violet-600' : 'bg-white/15'
               }`}
             >
               <span
-                className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${
-                  settings.showSimilarWordToImposter ? 'left-6' : 'left-0.5'
+                className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
+                  settings.showSimilarWordToImposter ? 'left-6' : 'left-1'
                 }`}
               />
-            </button>
-          </div>
+            </span>
+          </button>
         </div>
       </div>
 

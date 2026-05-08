@@ -21,8 +21,6 @@ export default function StarterScreen() {
 
   const spin = useCallback(() => {
     if (phase === 'spinning' || N === 0) return
-    setPhase('spinning')
-    setWinnerIdx(null)
 
     let winner = Math.floor(Math.random() * N)
     if (imposterIndices.includes(winner) && Math.random() < 0.7) {
@@ -36,6 +34,21 @@ export default function StarterScreen() {
 
     const slot = 360 / N
     const targetAngle = winner * slot
+
+    const reducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reducedMotion) {
+      setRotation(targetAngle)
+      setWinnerIdx(winner)
+      setPhase('settled')
+      return
+    }
+
+    setPhase('spinning')
+    setWinnerIdx(null)
+
     const jitter = (Math.random() - 0.5) * (slot * 0.4)
     const fullSpins = 5
     const final = rotation - (rotation % 360) + fullSpins * 360 + targetAngle + jitter
@@ -59,7 +72,7 @@ export default function StarterScreen() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center gap-6 w-full">
-        <p className="text-xs font-semibold text-white/40 uppercase tracking-widest">
+        <p className="text-xs font-semibold text-white/60 uppercase tracking-widest">
           {t.whoStarts}
         </p>
 
