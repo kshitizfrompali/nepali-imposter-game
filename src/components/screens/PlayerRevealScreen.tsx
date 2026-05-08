@@ -94,7 +94,7 @@ export default function PlayerRevealScreen() {
                 <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-3">
                   {settings.players[activePlayer]}
                 </p>
-                <p className="text-5xl font-black text-red-500 tracking-wider leading-none">
+                <p className="text-4xl sm:text-5xl font-black text-red-500 tracking-wide leading-tight">
                   {t.youAreImposter}
                 </p>
                 {settings.showCategoryToImposter && category && (

@@ -52,7 +52,7 @@ export const translations = {
     minPlayersError: 'कम्तीमा २ खेलाडी थप्नुहोस्',
     tapToReveal: 'आफ्नो भूमिका हेर्न नाममा थिच्नुहोस्',
     progressLabel: (seen: number, total: number) => `${seen} / ${total} खेलाडीले आफ्नो भूमिका देखे`,
-    youAreImposter: 'इम्पोस्टर',
+    youAreImposter: 'धोकेबाज हौ तिमी',
     theWordIs: 'शब्द हो',
     category: 'श्रेणी',
     done: 'भयो',
