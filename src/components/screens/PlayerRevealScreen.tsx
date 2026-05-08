@@ -102,6 +102,14 @@ export default function PlayerRevealScreen() {
                     {t.category}: {category.label.en} / {category.label.np}
                   </p>
                 )}
+                {settings.showSimilarWordToImposter && round.imposterHintWord && (
+                  <div className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+                    <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-widest mb-1">
+                      {t.similarWordLabel}
+                    </p>
+                    <p className="text-2xl font-black text-amber-300">{round.imposterHintWord}</p>
+                  </div>
+                )}
               </div>
               <p className="text-white/40 text-center text-sm max-w-[260px] leading-relaxed">
                 You do not know the word. Blend in and deceive!

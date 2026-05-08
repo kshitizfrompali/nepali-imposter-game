@@ -6,6 +6,7 @@ export default function StarterScreen() {
   const { state, goTo } = useApp()
   const { t } = useLanguage()
   const players = state.settings.players
+  const imposterIndices = state.round?.imposterIndices ?? []
 
   const [spinning, setSpinning] = useState(false)
   const [displayIdx, setDisplayIdx] = useState<number | null>(null)
@@ -16,7 +17,15 @@ export default function StarterScreen() {
     setSpinning(true)
     setSettled(false)
 
-    const winner = Math.floor(Math.random() * players.length)
+    let winner = Math.floor(Math.random() * players.length)
+    if (imposterIndices.includes(winner) && Math.random() < 0.7) {
+      const nonImposters = players
+        .map((_, i) => i)
+        .filter((i) => !imposterIndices.includes(i))
+      if (nonImposters.length > 0) {
+        winner = nonImposters[Math.floor(Math.random() * nonImposters.length)]
+      }
+    }
     const totalTicks = 22 + Math.floor(Math.random() * 8)
     let tick = 0
     let idx = Math.floor(Math.random() * players.length)
@@ -39,7 +48,7 @@ export default function StarterScreen() {
     }
 
     setTimeout(nextTick, 60)
-  }, [spinning, players])
+  }, [spinning, players, imposterIndices])
 
   return (
     <div className="flex flex-col items-center justify-center flex-1 px-6 py-8 relative overflow-hidden">

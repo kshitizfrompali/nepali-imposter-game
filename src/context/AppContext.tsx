@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react'
 import type { AppState, GameSettings, Screen } from '../types'
-import { assignRoles, pickWord } from '../utils/game'
+import { assignRoles, pickWord, pickImposterHint } from '../utils/game'
 import wordBankData from '../data/words.json'
 import type { WordBank } from '../types'
 
@@ -17,6 +17,7 @@ const defaultSettings: GameSettings = {
   imposterCount: 1,
   wordMode: 'random',
   showCategoryToImposter: false,
+  showSimilarWordToImposter: false,
 }
 
 function loadSettings(): GameSettings {
@@ -66,11 +67,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const { settings } = prev
       const { word, categoryId } = pickWord(settings, wordBank)
       const imposterIndices = assignRoles(settings.players.length, settings.imposterCount)
+      const imposterHintWord = pickImposterHint(wordBank, categoryId, word)
       const round = {
         word,
         categoryId,
         imposterIndices,
         revealedPlayers: new Array(settings.players.length).fill(false) as boolean[],
+        imposterHintWord,
       }
       return { ...prev, screen: 'reveal', round }
     })
