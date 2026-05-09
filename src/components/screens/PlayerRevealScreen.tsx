@@ -85,7 +85,24 @@ export default function PlayerRevealScreen() {
       {/* Full-screen role overlay */}
       {activePlayer !== null && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 px-8 bg-gradient-to-br from-[#0a0008] to-[#08080f]">
-          {isImposter ? (
+          {settings.gameMode === 'wordWolf' ? (
+            <>
+              <div className="w-32 h-32 rounded-3xl bg-violet-900/30 border border-violet-500/30 flex items-center justify-center shadow-2xl shadow-violet-900/50">
+                <span className="text-7xl">🔑</span>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-3">
+                  {settings.players[activePlayer]}
+                </p>
+                <p className="text-xs text-white/60 uppercase tracking-widest mb-3">
+                  {t.yourWord}
+                </p>
+                <p className="text-5xl font-black text-white leading-tight">
+                  {isImposter && round.wolfWord ? round.wolfWord : round.word}
+                </p>
+              </div>
+            </>
+          ) : isImposter ? (
             <>
               <div className="w-32 h-32 rounded-3xl bg-red-900/30 border border-red-700/30 flex items-center justify-center shadow-2xl shadow-red-900/50">
                 <span className="text-7xl">🕵️</span>

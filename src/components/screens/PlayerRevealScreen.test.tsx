@@ -14,6 +14,7 @@ const baseState: AppState = {
     imposterCount: 1,
     wordMode: 'random',
     showCategoryToImposter: false,
+    gameMode: 'classic',
   },
   round: {
     word: 'मोमो',

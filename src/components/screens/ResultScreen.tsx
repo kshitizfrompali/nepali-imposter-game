@@ -34,21 +34,41 @@ export default function ResultScreen() {
         <div className="w-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
           <div className="px-5 py-5 border-b border-white/5">
             <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
-              {t.impostersWere}
+              {settings.gameMode === 'wordWolf' ? t.wolfWas : t.impostersWere}
             </p>
             <p className="text-3xl font-black text-red-400 leading-tight">
               {imposterNames.join(', ')}
             </p>
           </div>
-          <div className="px-5 py-5">
-            <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
-              {t.theWordWas}
-            </p>
-            <p className="text-4xl font-black text-white">{round.word}</p>
-            <p className="text-sm text-white/55 mt-1.5">
-              {category?.label[language]}
-            </p>
-          </div>
+          {settings.gameMode === 'wordWolf' && round.wolfWord ? (
+            <>
+              <div className="px-5 py-5 border-b border-white/5">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
+                  {t.wolfWordWas}
+                </p>
+                <p className="text-3xl font-black text-amber-300">{round.wolfWord}</p>
+              </div>
+              <div className="px-5 py-5">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
+                  {t.everyoneElseHad}
+                </p>
+                <p className="text-3xl font-black text-white">{round.word}</p>
+                <p className="text-sm text-white/55 mt-1.5">
+                  {category?.label[language]}
+                </p>
+              </div>
+            </>
+          ) : (
+            <div className="px-5 py-5">
+              <p className="text-xs font-semibold text-white/60 uppercase tracking-widest mb-2">
+                {t.theWordWas}
+              </p>
+              <p className="text-4xl font-black text-white">{round.word}</p>
+              <p className="text-sm text-white/55 mt-1.5">
+                {category?.label[language]}
+              </p>
+            </div>
+          )}
         </div>
 
         <button

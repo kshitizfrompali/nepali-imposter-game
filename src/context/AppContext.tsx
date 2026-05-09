@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react'
 import type { AppState, GameSettings, Screen } from '../types'
-import { assignRoles, pickWord } from '../utils/game'
+import { assignRoles, pickWord, pickWordPair } from '../utils/game'
 import wordBankData from '../data/words.json'
 import type { WordBank } from '../types'
 
@@ -17,6 +17,7 @@ const defaultSettings: GameSettings = {
   imposterCount: 1,
   wordMode: 'random',
   showCategoryToImposter: false,
+  gameMode: 'classic',
 }
 
 function loadSettings(): GameSettings {
@@ -56,6 +57,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const updateSettings = useCallback((patch: Partial<GameSettings>) => {
     setState((prev) => {
       const settings = { ...prev.settings, ...patch }
+      if (settings.gameMode === 'wordWolf') {
+        settings.imposterCount = 1
+      }
       localStorage.setItem('nig_settings', JSON.stringify(settings))
       return { ...prev, settings }
     })
@@ -64,8 +68,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const startRound = useCallback(() => {
     setState((prev) => {
       const { settings } = prev
+      const imposterCount = settings.gameMode === 'wordWolf' ? 1 : settings.imposterCount
+      const imposterIndices = assignRoles(settings.players.length, imposterCount)
+      if (settings.gameMode === 'wordWolf') {
+        const { word, wolfWord, categoryId } = pickWordPair(settings, wordBank)
+        const round = {
+          word,
+          wolfWord,
+          categoryId,
+          imposterIndices,
+          revealedPlayers: new Array(settings.players.length).fill(false) as boolean[],
+        }
+        return { ...prev, screen: 'reveal', round }
+      }
       const { word, categoryId } = pickWord(settings, wordBank)
-      const imposterIndices = assignRoles(settings.players.length, settings.imposterCount)
       const round = {
         word,
         categoryId,

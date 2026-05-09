@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useLanguage } from '../../context/LanguageContext'
 import wordBankData from '../../data/words.json'
-import type { WordBank, WordMode } from '../../types'
+import type { GameMode, WordBank, WordMode } from '../../types'
 
 const wordBank = wordBankData as WordBank
 
@@ -92,42 +92,69 @@ export default function SettingsScreen() {
           )}
         </div>
 
-        {/* Imposter count */}
-        <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
-            {t.imposterCount}
+        {/* Game mode */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-3">
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+            {t.gameMode}
           </p>
-          <div className="flex items-center justify-between" role="group" aria-label={t.imposterCount}>
-            <button
-              onClick={() =>
-                updateSettings({ imposterCount: Math.max(1, settings.imposterCount - 1) })
-              }
-              aria-label="Decrease imposter count"
-              disabled={settings.imposterCount <= 1}
-              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
-            >
-              −
-            </button>
-            <span className="text-4xl font-black text-white tabular-nums" aria-live="polite">
-              {settings.imposterCount}
-            </span>
-            <button
-              onClick={() =>
-                updateSettings({
-                  imposterCount: Math.min(
-                    Math.max(1, settings.players.length - 1),
-                    settings.imposterCount + 1
-                  ),
-                })
-              }
-              aria-label="Increase imposter count"
-              disabled={settings.imposterCount >= Math.max(1, settings.players.length - 1)}
-              className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
-            >
-              +
-            </button>
+          <div className="flex gap-2">
+            {(['classic', 'wordWolf'] as GameMode[]).map((mode) => {
+              const active = settings.gameMode === mode
+              return (
+                <button
+                  key={mode}
+                  onClick={() => updateSettings({ gameMode: mode })}
+                  className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all active:scale-95 ${
+                    active
+                      ? 'bg-gradient-to-r from-violet-600/40 to-indigo-600/40 border border-violet-500/50 text-white'
+                      : 'bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {mode === 'classic' ? t.classicMode : t.wordWolfMode}
+                </button>
+              )
+            })}
           </div>
         </div>
+
+        {/* Imposter count (classic only) */}
+        {settings.gameMode === 'classic' && (
+          <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+            <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
+              {t.imposterCount}
+            </p>
+            <div className="flex items-center justify-between" role="group" aria-label={t.imposterCount}>
+              <button
+                onClick={() =>
+                  updateSettings({ imposterCount: Math.max(1, settings.imposterCount - 1) })
+                }
+                aria-label="Decrease imposter count"
+                disabled={settings.imposterCount <= 1}
+                className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+              >
+                −
+              </button>
+              <span className="text-4xl font-black text-white tabular-nums" aria-live="polite">
+                {settings.imposterCount}
+              </span>
+              <button
+                onClick={() =>
+                  updateSettings({
+                    imposterCount: Math.min(
+                      Math.max(1, settings.players.length - 1),
+                      settings.imposterCount + 1
+                    ),
+                  })
+                }
+                aria-label="Increase imposter count"
+                disabled={settings.imposterCount >= Math.max(1, settings.players.length - 1)}
+                className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white text-2xl font-bold flex items-center justify-center active:scale-95 transition-all"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Word mode */}
         <div className="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-3">
@@ -170,32 +197,34 @@ export default function SettingsScreen() {
             </select>
           )}
         </div>
-        {/* Imposter hint toggle */}
-        <div className="bg-white/5 rounded-2xl px-4 border border-white/10">
-          <button
-            type="button"
-            role="switch"
-            aria-checked={settings.showCategoryToImposter}
-            aria-label={t.showCategoryToImposter}
-            onClick={() => updateSettings({ showCategoryToImposter: !settings.showCategoryToImposter })}
-            className="w-full min-h-[52px] flex items-center justify-between gap-4 py-3 active:scale-[0.99] transition-transform text-left"
-          >
-            <span className="text-xs font-semibold text-white/60 uppercase tracking-widest leading-snug">
-              {t.showCategoryToImposter}
-            </span>
-            <span
-              className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
-                settings.showCategoryToImposter ? 'bg-violet-600' : 'bg-white/15'
-              }`}
+        {/* Imposter hint toggle (classic only) */}
+        {settings.gameMode === 'classic' && (
+          <div className="bg-white/5 rounded-2xl px-4 border border-white/10">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.showCategoryToImposter}
+              aria-label={t.showCategoryToImposter}
+              onClick={() => updateSettings({ showCategoryToImposter: !settings.showCategoryToImposter })}
+              className="w-full min-h-[52px] flex items-center justify-between gap-4 py-3 active:scale-[0.99] transition-transform text-left"
             >
+              <span className="text-xs font-semibold text-white/60 uppercase tracking-widest leading-snug">
+                {t.showCategoryToImposter}
+              </span>
               <span
-                className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
-                  settings.showCategoryToImposter ? 'left-6' : 'left-1'
+                className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
+                  settings.showCategoryToImposter ? 'bg-violet-600' : 'bg-white/15'
                 }`}
-              />
-            </span>
-          </button>
-        </div>
+              >
+                <span
+                  className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
+                    settings.showCategoryToImposter ? 'left-6' : 'left-1'
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Sticky bottom CTA */}

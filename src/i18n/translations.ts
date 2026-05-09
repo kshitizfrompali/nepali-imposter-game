@@ -31,6 +31,13 @@ export const translations = {
     whoStarts: 'Who starts?',
     spin: '🎲 Spin',
     startDiscussionNow: 'Start Discussion →',
+    gameMode: 'Game Mode',
+    classicMode: 'Classic',
+    wordWolfMode: 'Word Wolf',
+    yourWord: 'Your word',
+    wolfWordWas: 'Wolf had',
+    everyoneElseHad: 'Everyone else had',
+    wolfWas: 'Wolf was',
   },
   np: {
     appTitle: 'नेपाली इम्पोस्टर खेल',
@@ -64,6 +71,13 @@ export const translations = {
     whoStarts: 'को सुरु गर्छ?',
     spin: '🎲 स्पिन गर्नुहोस्',
     startDiscussionNow: 'छलफल सुरु गर्नुहोस् →',
+    gameMode: 'खेल मोड',
+    classicMode: 'क्लासिक',
+    wordWolfMode: 'वर्ड वुल्फ',
+    yourWord: 'तिम्रो शब्द',
+    wolfWordWas: 'वुल्फसँग थियो',
+    everyoneElseHad: 'अरूसँग थियो',
+    wolfWas: 'वुल्फ थियो',
   },
 } as const
 

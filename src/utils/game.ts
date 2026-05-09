@@ -18,6 +18,36 @@ export function flattenCategoryWords(category: Category): string[] {
   return [...category.clusters.flatMap((c) => c.words), ...(category.others ?? [])]
 }
 
+export function pickWordPair(
+  settings: GameSettings,
+  wordBank: WordBank
+): { word: string; wolfWord: string; categoryId: string } {
+  const eligibleCategories = wordBank.categories.filter((c) =>
+    c.clusters.some((cl) => cl.words.length >= 2)
+  )
+  if (eligibleCategories.length === 0) {
+    throw new Error('No clusters available for Word Wolf mode')
+  }
+
+  let category: Category
+  if (settings.wordMode === 'pick-category' && settings.selectedCategoryId) {
+    const found = eligibleCategories.find((c) => c.id === settings.selectedCategoryId)
+    if (!found) {
+      throw new Error(
+        `Category "${settings.selectedCategoryId}" has no eligible clusters for Word Wolf`
+      )
+    }
+    category = found
+  } else {
+    category = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)]
+  }
+
+  const eligibleClusters = category.clusters.filter((cl) => cl.words.length >= 2)
+  const cluster = eligibleClusters[Math.floor(Math.random() * eligibleClusters.length)]
+  const [a, b] = shuffleArray(cluster.words).slice(0, 2)
+  return { word: a, wolfWord: b, categoryId: category.id }
+}
+
 export function pickWord(
   settings: GameSettings,
   wordBank: WordBank
