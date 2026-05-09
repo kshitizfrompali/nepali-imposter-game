@@ -22,7 +22,14 @@ export default function ResultScreen() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-xs">
-        <span className="text-7xl">🎭</span>
+        <div className="w-40 h-40 rounded-3xl overflow-hidden border border-red-500/40 shadow-2xl shadow-red-900/60">
+          <img
+            src={`${import.meta.env.BASE_URL}result.webp`}
+            alt="Imposter caught"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
 
         <div className="w-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
           <div className="px-5 py-5 border-b border-white/5">
