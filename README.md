@@ -35,8 +35,6 @@ Everyone gets a word. **One wolf** sees a slightly different word from the same 
 - **18 themed categories** — politicians, celebrities, cricketers, food, festivals, places (all 77 districts), social media slang, and more
 - **All Nepali, all local** — words and names that actually feel like home
 - **Party-ready** — a single phone, 3+ players, no internet needed once loaded
-- **Imposter-bias starter spin** — the bottle that picks who speaks first quietly skews away from the imposter, so they don't have to talk first
-
 ---
 
 <div align="center">
