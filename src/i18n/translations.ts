@@ -38,6 +38,11 @@ export const translations = {
     wolfWordWas: 'Wolf had',
     everyoneElseHad: 'Everyone else had',
     wolfWas: 'Wolf was',
+    howToPlay: 'How to play',
+    gameModes: 'Game Modes',
+    classicDescription: 'One player is the imposter. They don\'t know the word and must bluff. Everyone else discusses to find them.',
+    wordWolfDescription: 'Everyone gets a word — but the wolf sees a slightly different word and doesn\'t know they\'re the wolf. Spot the odd one out.',
+    gotIt: 'Got it',
   },
   np: {
     appTitle: 'नेपाली इम्पोस्टर खेल',
@@ -78,6 +83,11 @@ export const translations = {
     wolfWordWas: 'वुल्फसँग थियो',
     everyoneElseHad: 'अरूसँग थियो',
     wolfWas: 'वुल्फ थियो',
+    howToPlay: 'मोड बुझ्नुहोस्',
+    gameModes: 'खेलका मोडहरू',
+    classicDescription: 'एक खेलाडी इम्पोस्टर हुन्छ। उसलाई शब्द थाहा हुँदैन। बाँकीले छलफल गरेर उसलाई पत्ता लगाउनुपर्छ।',
+    wordWolfDescription: 'सबैले शब्द पाउँछन् — तर एक "वुल्फ"ले अलिकति फरक शब्द देख्छ, र उसलाई थाहै हुँदैन। फरक खेलाडी पत्ता लगाउनुहोस्।',
+    gotIt: 'बुझेँ',
   },
 } as const
 
