@@ -43,6 +43,12 @@ export const translations = {
     classicDescription: 'One player is the imposter. They don\'t know the word and must bluff. Everyone else discusses to find them.',
     wordWolfDescription: 'Everyone gets a word — but one wolf sees a slightly different word and doesn\'t know they\'re the wolf. Spot the odd one out.',
     gotIt: 'Got it',
+    installApp: 'Install app',
+    iosInstallTitle: 'Add to Home Screen',
+    iosInstallIntro: 'iOS doesn\'t let websites trigger install. Add it manually in three taps:',
+    iosInstallStep1: 'Tap the Share button (square with ↑) at the bottom of Safari.',
+    iosInstallStep2: 'Scroll and choose "Add to Home Screen".',
+    iosInstallStep3: 'Tap "Add" in the top-right.',
   },
   np: {
     appTitle: 'नेपाली इम्पोस्टर खेल',
@@ -88,6 +94,12 @@ export const translations = {
     classicDescription: 'एक खेलाडी इम्पोस्टर हुन्छ। उसलाई शब्द थाहा हुँदैन। बाँकीले छलफल गरेर उसलाई पत्ता लगाउनुपर्छ।',
     wordWolfDescription: 'सबैले शब्द पाउँछन् — तर एक "वुल्फ"ले अलिकति फरक शब्द देख्छ, र उसलाई थाहै हुँदैन। फरक खेलाडी पत्ता लगाउनुहोस्।',
     gotIt: 'बुझेँ',
+    installApp: 'एप इन्स्टल गर्नुहोस्',
+    iosInstallTitle: 'होम स्क्रिनमा थप्नुहोस्',
+    iosInstallIntro: 'iOS ले स्वत: इन्स्टल गर्न दिँदैन। तीन तापमा थप्नुहोस्:',
+    iosInstallStep1: 'Safari को तलको Share बटन (वर्ग + ↑) थिच्नुहोस्।',
+    iosInstallStep2: 'स्क्रोल गरेर "Add to Home Screen" छान्नुहोस्।',
+    iosInstallStep3: 'माथि दायाँको "Add" थिच्नुहोस्।',
   },
 } as const
 

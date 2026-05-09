@@ -9,10 +9,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'logo.webp', 'result.webp'],
       manifest: {
-        name: 'नेपाली इम्पोस्टर खेल',
-        short_name: 'इम्पोस्टर',
+        name: 'Nepali Imposter',
+        short_name: 'Nepali Imposter',
         description: 'धोकेबाज हौ तिमी? — A Nepali pass-and-play imposter party game.',
-        lang: 'ne',
+        lang: 'en',
         theme_color: '#7c3aed',
         background_color: '#0d0d1a',
         display: 'standalone',
