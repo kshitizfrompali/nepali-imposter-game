@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="public/logo.webp" alt="Nepali Imposter mascot — red Among-Us-style imposter wearing a Dhaka topi, holding a khukuri, with Pashupatinath and the Himalayas in the background" width="240" />
 
-Currently, two official plugins are available:
+# नेपाली इम्पोस्टर खेल
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### धोकेबाज हौ तिमी?
 
-## React Compiler
+A party-game spin on Spyfall, in Nepali. Pass-and-play on one phone — find the imposter, or be the imposter and bluff your way through.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**[▶ Play it →](https://kshitizfrompali.github.io/nepali-imposter-game/)**
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Two ways to play
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🎭 Classic
+One player is the imposter. They don't know the secret word. Everyone else discusses, drops clues, asks questions — and tries to spot who's bluffing.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🐺 Word Wolf
+Everyone gets a word. **One wolf** sees a slightly different word from the same theme — and they don't even know they're the wolf. Spot the player describing things slightly off-key.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+<div align="center">
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+<img src="public/result.webp" alt="The imposter caught — same red mascot, hands raised, dhaka topi flying off, surrounded by silhouetted detectives with khukuris under a red spotlight" width="240" />
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+</div>
+
+---
+
+## Why it's fun
+
+- **18 themed categories** — politicians, celebrities, cricketers, food, festivals, places (all 77 districts), social media slang, and more
+- **All Nepali, all local** — words and names that actually feel like home
+- **Party-ready** — a single phone, 3+ players, no internet needed once loaded
+- **Imposter-bias starter spin** — the bottle that picks who speaks first quietly skews away from the imposter, so they don't have to talk first
+
+---
+
+<div align="center">
+<sub>Built for Nepali game nights. Pull up a chiya and play.</sub>
+</div>
