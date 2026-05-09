@@ -38,10 +38,10 @@ export const translations = {
     wolfWordWas: 'Wolf had',
     everyoneElseHad: 'Everyone else had',
     wolfWas: 'Wolf was',
-    howToPlay: 'How to play',
+    howToPlay: 'Understand the mode',
     gameModes: 'Game Modes',
     classicDescription: 'One player is the imposter. They don\'t know the word and must bluff. Everyone else discusses to find them.',
-    wordWolfDescription: 'Everyone gets a word — but the wolf sees a slightly different word and doesn\'t know they\'re the wolf. Spot the odd one out.',
+    wordWolfDescription: 'Everyone gets a word — but one wolf sees a slightly different word and doesn\'t know they\'re the wolf. Spot the odd one out.',
     gotIt: 'Got it',
   },
   np: {
