@@ -30,7 +30,6 @@ export const translations = {
     showCategoryToImposter: 'Show category to imposter',
     whoStarts: 'Who starts?',
     spin: '🎲 Spin',
-    reSpin: '↺ Re-spin',
     startDiscussionNow: 'Start Discussion →',
   },
   np: {
@@ -64,7 +63,6 @@ export const translations = {
     showCategoryToImposter: 'इम्पोस्टरलाई श्रेणी देखाउनुहोस्',
     whoStarts: 'को सुरु गर्छ?',
     spin: '🎲 स्पिन गर्नुहोस्',
-    reSpin: '↺ फेरि स्पिन',
     startDiscussionNow: 'छलफल सुरु गर्नुहोस् →',
   },
 } as const

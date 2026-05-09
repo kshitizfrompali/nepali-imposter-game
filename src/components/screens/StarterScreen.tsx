@@ -171,20 +171,12 @@ export default function StarterScreen() {
           </button>
         )}
         {phase === 'settled' && (
-          <div className="flex flex-col gap-3 w-full max-w-xs">
-            <button
-              onClick={spin}
-              className="w-full py-4 text-base font-bold rounded-2xl bg-white/5 border border-white/10 text-white/60 active:scale-95 transition-all"
-            >
-              {t.reSpin}
-            </button>
-            <button
-              onClick={() => goTo('discussion')}
-              className="w-full py-5 text-xl font-black rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl shadow-emerald-900/50 active:scale-95 transition-all"
-            >
-              {t.startDiscussionNow}
-            </button>
-          </div>
+          <button
+            onClick={() => goTo('discussion')}
+            className="w-full max-w-xs py-5 text-xl font-black rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl shadow-emerald-900/50 active:scale-95 transition-all"
+          >
+            {t.startDiscussionNow}
+          </button>
         )}
       </div>
     </div>
