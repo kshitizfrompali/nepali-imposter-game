@@ -36,7 +36,7 @@ export const translations = {
     startDiscussionNow: 'Start Discussion →',
   },
   np: {
-    appTitle: 'नेपाली इम्पोस्टर गेम',
+    appTitle: 'नेपाली इम्पोस्टर खेल',
     startGame: 'खेल सुरु गर्नुहोस्',
     settings: 'खेल सेटिङ',
     addPlayers: 'खेलाडी थप्नुहोस्',
