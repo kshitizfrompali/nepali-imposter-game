@@ -20,7 +20,6 @@ export interface GameSettings {
   wordMode: WordMode
   selectedCategoryId?: string
   showCategoryToImposter: boolean
-  showSimilarWordToImposter: boolean
 }
 
 export interface GameRound {
@@ -28,7 +27,6 @@ export interface GameRound {
   categoryId: string
   imposterIndices: number[]
   revealedPlayers: boolean[]
-  imposterHintWord: string | null
 }
 
 export interface AppState {

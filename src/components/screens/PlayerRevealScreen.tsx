@@ -8,7 +8,7 @@ const wordBank = wordBankData as WordBank
 
 export default function PlayerRevealScreen() {
   const { state, goTo, markPlayerRevealed } = useApp()
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { settings, round } = state
   const [activePlayer, setActivePlayer] = useState<number | null>(null)
 
@@ -99,16 +99,8 @@ export default function PlayerRevealScreen() {
                 </p>
                 {settings.showCategoryToImposter && category && (
                   <p className="text-sm text-white/60 mt-4 uppercase tracking-widest">
-                    {t.category}: {category.label.en} / {category.label.np}
+                    {t.category}: {category.label[language]}
                   </p>
-                )}
-                {settings.showSimilarWordToImposter && round.imposterHintWord && (
-                  <div className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
-                    <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-widest mb-1">
-                      {t.similarWordLabel}
-                    </p>
-                    <p className="text-2xl font-black text-amber-300">{round.imposterHintWord}</p>
-                  </div>
                 )}
               </div>
               <p className="text-white/60 text-center text-sm max-w-[260px] leading-relaxed">
@@ -125,7 +117,7 @@ export default function PlayerRevealScreen() {
                   {settings.players[activePlayer]}
                 </p>
                 <p className="text-xs text-white/60 uppercase tracking-widest mb-3">
-                  {t.category}: {category?.label.en} / {category?.label.np}
+                  {t.category}: {category?.label[language]}
                 </p>
                 <p className="text-5xl font-black text-white leading-tight">{round.word}</p>
               </div>

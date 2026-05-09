@@ -1,17 +1,5 @@
 import type { GameSettings, WordBank } from '../types'
 
-export function pickImposterHint(
-  wordBank: WordBank,
-  categoryId: string,
-  actualWord: string
-): string | null {
-  const category = wordBank.categories.find((c) => c.id === categoryId)
-  if (!category) return null
-  const candidates = category.words.filter((w) => w !== actualWord)
-  if (candidates.length === 0) return null
-  return candidates[Math.floor(Math.random() * candidates.length)]
-}
-
 export function shuffleArray<T>(array: T[]): T[] {
   const copy = [...array]
   for (let i = copy.length - 1; i > 0; i--) {

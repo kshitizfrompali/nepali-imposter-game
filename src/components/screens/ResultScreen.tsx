@@ -7,7 +7,7 @@ const wordBank = wordBankData as WordBank
 
 export default function ResultScreen() {
   const { state, goTo } = useApp()
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { settings, round } = state
 
   if (!round) return null
@@ -39,7 +39,7 @@ export default function ResultScreen() {
             </p>
             <p className="text-4xl font-black text-white">{round.word}</p>
             <p className="text-sm text-white/55 mt-1.5">
-              {category?.label.en} / {category?.label.np}
+              {category?.label[language]}
             </p>
           </div>
         </div>

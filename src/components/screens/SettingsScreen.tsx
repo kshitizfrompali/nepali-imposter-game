@@ -8,7 +8,7 @@ const wordBank = wordBankData as WordBank
 
 export default function SettingsScreen() {
   const { state, goTo, updateSettings, startRound } = useApp()
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const { settings } = state
   const [nameInput, setNameInput] = useState('')
 
@@ -164,14 +164,14 @@ export default function SettingsScreen() {
               </option>
               {wordBank.categories.map((cat) => (
                 <option key={cat.id} value={cat.id} className="bg-gray-900">
-                  {cat.label.en} / {cat.label.np}
+                  {cat.label[language]}
                 </option>
               ))}
             </select>
           )}
         </div>
-        {/* Imposter hint toggles */}
-        <div className="bg-white/5 rounded-2xl px-4 py-2 border border-white/10 divide-y divide-white/5">
+        {/* Imposter hint toggle */}
+        <div className="bg-white/5 rounded-2xl px-4 border border-white/10">
           <button
             type="button"
             role="switch"
@@ -191,29 +191,6 @@ export default function SettingsScreen() {
               <span
                 className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
                   settings.showCategoryToImposter ? 'left-6' : 'left-1'
-                }`}
-              />
-            </span>
-          </button>
-          <button
-            type="button"
-            role="switch"
-            aria-checked={settings.showSimilarWordToImposter}
-            aria-label={t.showSimilarWordToImposter}
-            onClick={() => updateSettings({ showSimilarWordToImposter: !settings.showSimilarWordToImposter })}
-            className="w-full min-h-[52px] flex items-center justify-between gap-4 py-3 active:scale-[0.99] transition-transform text-left"
-          >
-            <span className="text-xs font-semibold text-white/60 uppercase tracking-widest leading-snug">
-              {t.showSimilarWordToImposter}
-            </span>
-            <span
-              className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
-                settings.showSimilarWordToImposter ? 'bg-violet-600' : 'bg-white/15'
-              }`}
-            >
-              <span
-                className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
-                  settings.showSimilarWordToImposter ? 'left-6' : 'left-1'
                 }`}
               />
             </span>

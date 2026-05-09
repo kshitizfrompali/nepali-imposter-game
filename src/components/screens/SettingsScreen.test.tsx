@@ -11,7 +11,6 @@ const defaultSettings: GameSettings = {
   imposterCount: 1,
   wordMode: 'random',
   showCategoryToImposter: false,
-  showSimilarWordToImposter: false,
 }
 
 const defaultState: AppState = {

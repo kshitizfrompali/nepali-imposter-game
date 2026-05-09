@@ -14,14 +14,12 @@ const baseState: AppState = {
     imposterCount: 1,
     wordMode: 'random',
     showCategoryToImposter: false,
-    showSimilarWordToImposter: false,
   },
   round: {
     word: 'मोमो',
     categoryId: 'khana',
     imposterIndices: [1],
     revealedPlayers: [false, false, false],
-    imposterHintWord: null,
   },
 }
 
