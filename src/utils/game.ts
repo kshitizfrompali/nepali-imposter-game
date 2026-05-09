@@ -1,4 +1,4 @@
-import type { GameSettings, WordBank } from '../types'
+import type { Category, GameSettings, WordBank } from '../types'
 
 export function shuffleArray<T>(array: T[]): T[] {
   const copy = [...array]
@@ -12,6 +12,10 @@ export function shuffleArray<T>(array: T[]): T[] {
 export function assignRoles(playerCount: number, imposterCount: number): number[] {
   const indices = Array.from({ length: playerCount }, (_, i) => i)
   return shuffleArray(indices).slice(0, imposterCount)
+}
+
+export function flattenCategoryWords(category: Category): string[] {
+  return [...category.clusters.flatMap((c) => c.words), ...(category.others ?? [])]
 }
 
 export function pickWord(
@@ -28,12 +32,14 @@ export function pickWord(
     if (!category) {
       throw new Error(`Category "${settings.selectedCategoryId}" not found`)
     }
-    const word = category.words[Math.floor(Math.random() * category.words.length)]
+    const pool = flattenCategoryWords(category)
+    const word = pool[Math.floor(Math.random() * pool.length)]
     return { word, categoryId: category.id }
   }
 
   const category =
     wordBank.categories[Math.floor(Math.random() * wordBank.categories.length)]
-  const word = category.words[Math.floor(Math.random() * category.words.length)]
+  const pool = flattenCategoryWords(category)
+  const word = pool[Math.floor(Math.random() * pool.length)]
   return { word, categoryId: category.id }
 }

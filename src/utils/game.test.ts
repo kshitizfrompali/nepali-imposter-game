@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { shuffleArray, assignRoles, pickWord } from './game'
+import { shuffleArray, assignRoles, pickWord, flattenCategoryWords } from './game'
 import type { GameSettings, WordBank } from '../types'
 
 const mockWordBank: WordBank = {
@@ -7,12 +7,17 @@ const mockWordBank: WordBank = {
     {
       id: 'food',
       label: { en: 'Food', np: 'खाना' },
-      words: ['मोमो', 'दाल', 'भात', 'चिया', 'रोटी'],
+      clusters: [
+        { id: 'staples', words: ['मोमो', 'दाल', 'भात'] },
+        { id: 'drinks', words: ['चिया', 'रोटी'] },
+      ],
     },
     {
       id: 'places',
       label: { en: 'Places', np: 'ठाउँ' },
-      words: ['काठमाडौं', 'पोखरा', 'चितवन'],
+      clusters: [
+        { id: 'cities', words: ['काठमाडौं', 'पोखरा', 'चितवन'] },
+      ],
     },
   ],
 }
@@ -76,7 +81,7 @@ describe('pickWord', () => {
       showCategoryToImposter: false,
     }
     const result = pickWord(settings, mockWordBank)
-    expect(mockWordBank.categories[0].words).toContain(result.word)
+    expect(flattenCategoryWords(mockWordBank.categories[0])).toContain(result.word)
     expect(result.categoryId).toBe('food')
   })
 
@@ -88,7 +93,7 @@ describe('pickWord', () => {
       showCategoryToImposter: false,
     }
     const result = pickWord(settings, mockWordBank)
-    const allWords = mockWordBank.categories.flatMap((c) => c.words)
+    const allWords = mockWordBank.categories.flatMap(flattenCategoryWords)
     expect(allWords).toContain(result.word)
     expect(['food', 'places']).toContain(result.categoryId)
   })

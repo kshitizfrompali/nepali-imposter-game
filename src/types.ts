@@ -4,10 +4,16 @@ export type Language = 'en' | 'np'
 
 export type Screen = 'home' | 'settings' | 'reveal' | 'starter' | 'discussion' | 'result'
 
+export interface Cluster {
+  id: string
+  words: string[]
+}
+
 export interface Category {
   id: string
   label: { en: string; np: string }
-  words: string[]
+  clusters: Cluster[]
+  others?: string[]
 }
 
 export interface WordBank {
