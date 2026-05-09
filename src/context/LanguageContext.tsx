@@ -13,10 +13,10 @@ const LanguageContext = createContext<LanguageContextValue | null>(null)
 export { LanguageContext }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en')
+  const [language, setLanguage] = useState<Language>('np')
 
   function toggleLanguage() {
-    setLanguage((prev) => (prev === 'en' ? 'np' : 'en'))
+    setLanguage((prev) => (prev === 'np' ? 'en' : 'np'))
   }
 
   const t = translations[language]

@@ -30,7 +30,7 @@ function loadSettings(): GameSettings {
 
 const initialState: AppState = {
   screen: 'home',
-  language: 'en',
+  language: 'np',
   settings: loadSettings(),
   round: null,
 }

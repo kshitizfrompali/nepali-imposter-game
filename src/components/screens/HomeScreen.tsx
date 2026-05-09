@@ -21,8 +21,8 @@ export default function HomeScreen() {
             <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
               {t.appTitle}
             </h2>
-            <p className="text-white/55 text-xs font-semibold tracking-[0.2em] uppercase mt-2">
-              Spyfall · Nepali Edition
+            <p className="text-red-400/80 text-base font-bold tracking-wide mt-3">
+              धोकेबाज हौ तिमी?
             </p>
           </div>
         </div>
